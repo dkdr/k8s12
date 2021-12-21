@@ -63,6 +63,6 @@ kubectl delete ingress example-ingress
 
 kubectl create deployment test1 --image=app:v1 --replicas 2 
 kubectl expose deployment test1 --port 5000 --type ClusterIP
-kubectl create ingress app-ingress --rule="/=app:5000"
+kubectl create ingress app-ingress --rule="/=test1:5000"
 ```
 By that you'll create a deployment instead of single pod deployment. As always, take a look at `kubectl describe` commands.
