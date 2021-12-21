@@ -5,7 +5,7 @@ Examples are based on files provided by [awesome-compose](https://github.com/doc
 
 ## Build the app
 
-To build the app you should ind _basic/docker directory and run this command
+To build the app you should in _basic/docker directory and run this command
 ```shell
 docker build -f Dockerfile . -t app:v1
 ```

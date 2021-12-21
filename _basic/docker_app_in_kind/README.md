@@ -52,7 +52,7 @@ After this, you can verify if tour application is available from outside of clus
 curl http://localhost
 ```
 
-### Do iy without YAML files
+### Do it without YAML files
 
 You can also use kubectl commands to generate YAML files for you, just run
 ```shell
@@ -61,8 +61,8 @@ kubectl delete pod foo-app
 kubectl delete service foo-service
 kubectl delete ingress example-ingress
 
-kubectl create deployment test1 --image=app:v1 --replicas 2 -o yaml --dry-run=client
-kubectl expose deployment app --port 5000 --type ClusterIP
+kubectl create deployment test1 --image=app:v1 --replicas 2 
+kubectl expose deployment test1 --port 5000 --type ClusterIP
 kubectl create ingress app-ingress --rule="/=app:5000"
 ```
 By that you'll create a deployment instead of single pod deployment. As always, take a look at `kubectl describe` commands.
