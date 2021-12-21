@@ -8,6 +8,7 @@ First we need to open Terminal and install some stuff:
 sudo su -  # make us a priviledged user
 yum install -y docker  bash-completion vim ca-certificates # Install some tools and fresh certificates
 update-ca-trust # Update system cert truststore
+. /etc/profile.d/bash_completion.sh
 ```
 
 Next we need to configure our docker to user our registry mirror
