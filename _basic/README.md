@@ -56,4 +56,4 @@ echo "source <(kubectl completion bash)" >> ~/.bashrc
 ```
 
 
-Now we're ready to create cluster!
+Now we're ready to [create cluster](DEPLOY_CLUSTER.md)!
