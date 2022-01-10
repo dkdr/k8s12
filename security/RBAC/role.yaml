@@ -10,12 +10,12 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
- name: uzyszkodnik-get-pods
+  name: uzyszkodnik-get-pods
 subjects:
 - apiGroup: ""
- kind: User
- name: uzyszkodnik
+  kind: User
+  name: uzyszkodnik
 roleRef:
- apiGroup: ""
- kind: Role
- name: get-pods
+  apiGroup: ""
+  kind: Role
+  name: get-pods
