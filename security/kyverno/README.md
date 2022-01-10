@@ -14,6 +14,11 @@ helm repo add kyverno https://kyverno.github.io/kyverno/
 helm install kyverno kyverno/kyverno --version 2.1.4
 ```
 
+And lets deplyo the policy:
+```shell
+kubectl apply -f policy-deployment.yaml
+```
+
 Now we'll try to create a pod which will fail our policy.
 
 ```shell
