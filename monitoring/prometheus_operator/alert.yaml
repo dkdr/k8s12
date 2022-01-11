@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: example
+    role: alert-rules
+    release: kube-monitoring
+    app: kube-prometheus-stack
+  name: prometheus-example-rules
+spec:
+  groups:
+  - name: ./springboot.rules
+    rules:
+    - alert: ToManyVisitors
+      expr: visit_counter_total > 10
+      for: 1m

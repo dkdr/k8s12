@@ -30,7 +30,7 @@ We don't need to change any default values to make it work, however it is a good
 ```shell
 kubectl create namespace monitoring
 kubectl config set-context --current --namespace=monitoring
-helm install kube-monitoring -f values.yaml .
+helm install kube-monitoring -f values.yaml . --wait --atomic
 ```
 
 Now we only need to access the UIs.
