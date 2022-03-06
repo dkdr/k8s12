@@ -12,7 +12,7 @@ kind create cluster --config cluster.yaml
 
 Kind will need some time to download the images and start the workers, it usually takes up tu 3 minutes.
 
-After that we can check if our cluster is avaliable:
+After that we can check if our cluster is available:
 ```shell
 kubectl version
 ```
@@ -34,7 +34,7 @@ kubectl wait --namespace ingress-nginx \
   --timeout=90s
 ```
 
-# Reacreating cluster
+# Recreating cluster
 
 If you had any problems with your cluster you can simply delete it by running
 ```shell

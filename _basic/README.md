@@ -5,29 +5,36 @@
 First we need to open Terminal and install some stuff:
 
 ```shell
-sudo su -  # make us a priviledged user
-yum install -y docker  bash-completion vim ca-certificates # Install some tools and fresh certificates
-update-ca-trust # Update system cert truststore
+sudo yum install -y docker  bash-completion vim ca-certificates  # make us a privileged user and install some tools and fresh certificates
+sudo update-ca-trust # Update system cert truststore
 . /etc/profile.d/bash_completion.sh
 ```
 
 Next we need to configure our docker to user our registry mirror
 
 ```shell
-cat <<EOF > /etc/docker/daemon.json
+sudo bash -c 'cat <<EOF > /etc/docker/daemon.json
 {
   "registry-mirrors": ["https://registry.<XXXXXXX>.pl"]
 }
-EOF
+EOF'
 ```
 
 `<XXXXXXX>` should be provided on the course. If you're deploying cluster at home, you can probably skip this step
 
-Next, let's start our docker daemon, and make start with our system:
+Next, let's add permission for our user to run docker, and make start with our system:
 ```shell
-service docker start
-systemctl enable docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo systemctl enable docker
 ```
+
+Our docker is not running right now, so let's try to fix it by turning our VM of and on again:
+```shell
+reboot
+```
+
+This should fix our issue. Truth is, that reboot is needed to reevaluate our user permissions. But "turning it off and on again" to fix some issue is much funnier. 
 
 ## Install kind
 
@@ -35,16 +42,16 @@ To provision our basic cluster we'll use [Kubernetes in Docker](https://kind.sig
 
 Let's install it:
 ```shell
-curl -Lo /usr/bin/kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
-chmod u+x /usr/bin/kind
+sudo curl -Lo /usr/bin/kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+sudo chmod u+x /usr/bin/kind
 ```
 Commands listed above will download kind binary to /usr/bin/ directory and make it executable for user. We'll do same thing with kubectl binary, which will be used to run commands against our newly created cluster:
 
 ## Install kubectl
 
 ```shell
-curl -Lo /usr/bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-chmod u+x /usr/bin/kubectl
+sudo curl -Lo /usr/bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo chmod u+x /usr/bin/kubectl
 ```
 
 ### Add auto-completion
