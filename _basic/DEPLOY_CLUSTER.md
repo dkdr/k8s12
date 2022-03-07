@@ -2,7 +2,7 @@
 
 In our scenario we'll deploy cluster which consist of 1 masters, and 3 workers. You can change amount of masters/workers by editing [cluster.yaml](cluster.yaml) file.
 
-To deploy our cluster we'll simply need the [cluster.yaml](cluster.yaml) file, and of course all those previous tools and commands.
+To deploy our cluster we'll simply need the [cluster.yaml](cluster.yaml) file, and of course all those previous tools and commands. To do so, remember to change your directory to `k8s12/_basic` 
 
 To deploy our cluster we just need to run:
 
