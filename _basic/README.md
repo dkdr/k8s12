@@ -31,7 +31,7 @@ sudo systemctl enable docker
 
 Our docker is not running right now, so let's try to fix it by turning our VM of and on again:
 ```shell
-reboot
+sudo reboot
 ```
 
 This should fix our issue. Truth is, that reboot is needed to reevaluate our user permissions. But "turning it off and on again" to fix some issue is much funnier. 
