@@ -48,10 +48,18 @@ sudo chmod a+x /usr/bin/kind
 Commands listed above will download kind binary to /usr/bin/ directory and make it executable for user. We'll do same thing with kubectl binary, which will be used to run commands against our newly created cluster:
 
 ## Install kubectl
+Kubectl is a CLI interface for our cluster.
 
 ```shell
 sudo curl -Lo /usr/bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo chmod a+x /usr/bin/kubectl
+```
+
+## Install octant
+Octant is a GUI interface for our cluster.
+
+```shell
+sudo rpm -i https://github.com/vmware-tanzu/octant/reases/download/v0.25.1/octant_0.25.1_Linux-64bit.rpm
 ```
 
 ### Add auto-completion
