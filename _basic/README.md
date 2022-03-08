@@ -59,7 +59,7 @@ sudo chmod a+x /usr/bin/kubectl
 Octant is a GUI interface for our cluster.
 
 ```shell
-sudo rpm -i https://github.com/vmware-tanzu/octant/reases/download/v0.25.1/octant_0.25.1_Linux-64bit.rpm
+sudo rpm -i https://github.com/vmware-tanzu/octant/releases/download/v0.25.1/octant_0.25.1_Linux-64bit.rpm 
 ```
 
 ### Add auto-completion
