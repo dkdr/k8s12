@@ -73,6 +73,23 @@ But file in the pod stayed the same. This happens because kubernetes is adding t
 
 ## Secrets
 
+Secrets are quite similar to ConfigMaps, however they are a separate object which behaves a little differently. In our example we'll use Secret to store a database password as env variable. If you need more secure way to store Secrets take a look at [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets).
+
+```shell
+# First let's create a secret object
+kubectl create secret generic credentials --from-literal=username=stronguser --from-literal=password=Str0nGp4ssw0rD
+```
+
+Now we just need a pod which will use our secret:
+```shell
+kubectl apply -f secret-pod.yaml
+kubectl get pod secret-env-pod -o yaml
+```
+
+You should see, that the variable itself is still not shown in pod definition. This allows to grant permission to getting pod definitions to some users, but if they don't have permissions to get secrets - they can't see its content (unless they can run terminal in pod).
+
+
+
 ## Cleanup
 ```shell
 kubectl delete namespace app-config
