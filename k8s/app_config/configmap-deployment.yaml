@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: konfigapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: konfigapp
+  template:
+    metadata:
+      labels:
+        app: konfigapp
+    spec:
+      # Add the ConfigMap as a volume to the Pod
+      volumes:
+        # `name` here must match the name specified in the volume mount
+        - name: config-volume
+          # Populate the volume with config map data
+          configMap:
+            # `name` here must match the name specified in the ConfigMap's YAML
+            name: konfig
+      containers:
+      - image: gcr.io/google-samples/node-hello:1.0
+        name: node-hello
+        # Mount the volume that contains the configuration data into your container filesystem
+        volumeMounts:
+          # `name` here must match the name from the volumes section of this pod
+          - name: config-volume
+            mountPath: /etc/konfig
