@@ -59,9 +59,34 @@ sudo chmod a+x /usr/bin/kubectl
 Octant is a GUI interface for our cluster.
 
 ```shell
+sudo yum install xdg-utils # This will allow octant to automatically open browser
 sudo rpm -i https://github.com/vmware-tanzu/octant/releases/download/v0.25.1/octant_0.25.1_Linux-64bit.rpm 
 ```
 
+## Install krew
+Krew is a kubectl plugin to manage other kubectl plugins. Usually those plugins are some small scripts which can help us in day-to-day work.
+```shell
+(
+  set -x; cd "$(mktemp -d)" &&
+  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+  KREW="krew-${OS}_${ARCH}" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+  tar zxvf "${KREW}.tar.gz" &&
+  ./"${KREW}" install krew
+)
+# Add krew path to current and future shells
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> ~/.bashrc
+```
+
+Now we'll install some useful plugins. You can find full list here: https://krew.sigs.k8s.io/plugins/ 
+```shell
+kubectl krew install ns ctx popeye who-can
+# Install fzf for kubens/kubectx interactive mode
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
+```
 ### Add auto-completion
 
 If you're a lazy person (I hope so, since I'm) you can enable auto-completion in bash:
