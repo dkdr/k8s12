@@ -7,4 +7,4 @@ metadata:
 spec:
   containers:
   - name: foo-app
-    image: app:v1
+    image: k8s.gcr.io/hpa-example
