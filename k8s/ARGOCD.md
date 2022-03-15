@@ -21,7 +21,8 @@ By running those commands we'll download our charts and extract them in `argo-cd
 Default values should be fine, so we can just run the installation
 ```shell
 cd argo-cd
-helm install my-argo-cd . -f values.yaml 
+kubectl config set-context --current --namespace=default
+helm install my-argo-cd . -f values.yaml
 ```
 
 ## Access the frontend
