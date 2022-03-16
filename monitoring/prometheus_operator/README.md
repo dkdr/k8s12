@@ -39,7 +39,7 @@ Now we only need to access the UIs.
 
 To access grafana ui:
 ```shell
-kubectl port-forward service/kube-monitoring-grafana 9080:80
+kubectl port-forward service/kube-monitoring-grafana 9080:3000
 ```
 Default login/password for grafana: `admin:prom-operator`.
 
