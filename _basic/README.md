@@ -59,7 +59,7 @@ sudo chmod a+x /usr/bin/kubectl
 Octant is a GUI interface for our cluster.
 
 ```shell
-sudo yum install xdg-utils # This will allow octant to automatically open browser
+sudo yum install -y xdg-utils # This will allow octant to automatically open browser
 sudo rpm -i https://github.com/vmware-tanzu/octant/releases/download/v0.25.1/octant_0.25.1_Linux-64bit.rpm 
 ```
 
