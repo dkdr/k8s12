@@ -14,7 +14,7 @@ Enough theory, lets deploy it!
 
 # Deployment
 
-As in most cases, we'll use Artifacthub to get our charts. Yuo can find more info [here](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack).
+As in most cases, we'll use Artifacthub to get our charts. You can find more info [here](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack).
 
 Let's add the repo, and fetch the charts:
 

@@ -69,7 +69,7 @@ It is just existing.
 Quite similar to Docker Swarm...
 ```
 
-But file in the pod stayed the same. This happens because kubernetes is adding the content of configmap to pod only when it is being deployed. If you want to update those files in the pod you need to do it manually (which of course is not recommended). You can use Helm to trigger new deployment when content of configmap changes: [Helm Tips and Tricks](**https://helm.sh/docs/howto/charts_tips_and_tricks/#automatically-roll-deployments**).
+As you can see, the file in container also changed. This happens only when you're mounting configmap as volume. You can read more about it [here](https://medium.com/@harsh.manvar111/update-configmap-without-restarting-pod-56801dce3388). If you app needs to be restarted when configmap changes, you can use Helm to trigger new deployment when content of configmap changes: [Helm Tips and Tricks](**https://helm.sh/docs/howto/charts_tips_and_tricks/#automatically-roll-deployments**).
 
 ## Secrets
 

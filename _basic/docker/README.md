@@ -22,3 +22,9 @@ docker build -f Dockerfile . -t app:v2
 
 Compare output of first run of `docker build` and the second one. You should see a difference in build time, and output length. This happens because of docker caching the result of first build and making changes only in layers that were modified (and of course in each layer after the modified one).
 
+## Run the app
+
+Now lets try to run our app:
+```shell
+docker run -d app:v1
+```
