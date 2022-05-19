@@ -59,7 +59,7 @@ root@nginx-deployment-7cd98dbfd7-4n6gt:/# echo "Hello World!" > /usr/share/nginx
 root@nginx-deployment-7cd98dbfd7-4n6gt:/# echo "Goodbye World!" > /usr/share/nginx/index.html
 ```
 
-Now, as mentioned above, we need to say goodbye to our pod. You can take a small brake to think about him if you get attached to it.
+Now, as mentioned above, we need to say goodbye to our pod. You can take a small break to think about him if you get attached to it.
 ```shell
 λ kubectl delete pod nginx-deployment-7cd98dbfd7-4n6gt
 pod "nginx-deployment-7cd98dbfd7-4n6gt" deleted
