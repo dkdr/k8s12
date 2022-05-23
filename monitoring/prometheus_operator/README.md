@@ -20,8 +20,8 @@ Let's add the repo, and fetch the charts:
 
 ```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm fetch prometheus-community/kube-prometheus-stack --version 20.0.1
-tar xvf kube-prometheus-stack-20.0.1.tgz
+helm fetch prometheus-community/kube-prometheus-stack --version 35.3.1
+tar xvf kube-prometheus-stack-35.3.1.tgz
 cd kube-prometheus-stack/
 ```
 
@@ -39,7 +39,7 @@ Now we only need to access the UIs.
 
 To access grafana ui:
 ```shell
-kubectl port-forward service/kube-monitoring-grafana 9080:3000
+kubectl port-forward service/kube-monitoring-grafana 9080:80
 ```
 Default login/password for grafana: `admin:prom-operator`.
 

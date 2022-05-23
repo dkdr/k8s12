@@ -26,6 +26,9 @@ In following command we'll modify some values to deploy also our example app for
 helm install jaeger jaegertracing/jaeger --set hotrod.enabled=true  --set provisionDataStore.cassandra=false --set allInOne.enabled=true --set storage.type=none --set agent.enabled=false --set collector.enabled=false --set query.enabled=false 
 ```
 
+## Usage
+
+Describe usage here... - Will do in future!
 
 ## Cleanup
 
