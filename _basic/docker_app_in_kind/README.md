@@ -61,7 +61,7 @@ kubectl delete pod foo-app
 kubectl delete service foo-service
 kubectl delete ingress example-ingress
 
-kubectl create deployment test1 --image=app:v1 --replicas 2 
+kubectl create deployment test1 --image=app:v2 --replicas 2 
 kubectl expose deployment test1 --port 5000 --type ClusterIP
 kubectl create ingress app-ingress --rule="/=test1:5000"
 ```
