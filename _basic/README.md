@@ -5,7 +5,7 @@
 First we need to open Terminal and install some stuff:
 
 ```shell
-sudo yum install -y docker  bash-completion vim ca-certificates  # make us a privileged user and install some tools and fresh certificates
+sudo yum install -y docker docker-compose bash-completion vim ca-certificates  # make us a privileged user and install some tools and fresh certificates
 sudo update-ca-trust # Update system cert truststore
 . /etc/profile.d/bash_completion.sh
 ```

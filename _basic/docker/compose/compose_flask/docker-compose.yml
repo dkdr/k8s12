@@ -1,12 +1,10 @@
-version: '3'
+version: '3.2'
 services:
     web:
         build: .
         image: flaskredisapp
         ports:
             - "5000:5000"
-        volumes:
-            - .:/code
         depends_on:
             - redis
         healthcheck:
@@ -14,7 +12,6 @@ services:
             interval: 1m
             timeout: 10s
             retries: 3
-            start_period: 40s
         networks:
             - flaskapp
         restart: always
