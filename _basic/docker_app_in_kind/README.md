@@ -1,6 +1,6 @@
 # Run your app in your k8s cluster
 
-Let's assume, that you just build app from step described in [docker dir](../docker/README.md). If not - well, it will be nice to do so!
+Let's assume, that you just build app from step described in [docker dir](../docker/simple_app/README.md). If not - well, it will be nice to do so!
 
 First we'll need to load our image to our kind cluster. This step is necessary because of KIND architecture which has no direct access to your local images. If you are a lucky one to have a private repo - then you can push your app image there and work with KIND as you work with your normal k8s cluster. But let's say, that this is not the case here. So lets do the needful
 ```shell

@@ -36,6 +36,8 @@ sudo reboot
 
 This should fix our issue. Truth is, that reboot is needed to reevaluate our user permissions. But "turning it off and on again" to fix some issue is much funnier. 
 
+**If you're learning only about docker, then you can stop here and go to [README.md](docker/README.md) in docker dir.** But if you just can't stop learning - go on, do all the stuff!
+
 ## Install kind
 
 To provision our basic cluster we'll use [Kubernetes in Docker](https://kind.sigs.k8s.io/).

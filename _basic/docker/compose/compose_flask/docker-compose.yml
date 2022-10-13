@@ -1,0 +1,43 @@
+version: '3'
+services:
+    web:
+        build: .
+        image: flaskredisapp
+        ports:
+            - "5000:5000"
+        volumes:
+            - .:/code
+        depends_on:
+            - redis
+        healthcheck:
+            test: [ "CMD", "curl", "-f", "http://localhost:5000" ]
+            interval: 1m
+            timeout: 10s
+            retries: 3
+            start_period: 40s
+        networks:
+            - flaskapp
+        restart: always
+
+    redis:
+        image: redis
+        networks:
+            - flaskapp
+        volumes:
+            - redis_data:/data
+        restart: always
+
+    redisinsight:
+        image: redislabs/redisinsight:latest
+        ports:
+            - '8001:8001'
+        depends_on:
+            - redis
+        networks:
+            - flaskapp
+        restart: always
+volumes:
+    redis_data:
+
+networks:
+  flaskapp:
