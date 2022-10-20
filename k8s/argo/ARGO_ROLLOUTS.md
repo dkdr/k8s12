@@ -63,3 +63,10 @@ kubectl argo rollouts get rollout rollouts-demo --watch
 ```
 
 In your browser you should see, that the rollout is progressing. New version should replace old one in less than minute. This was the simplest example of Canary Deployment. Check this repo later to find Canary Deployment with Prometheus integration :)
+
+If you want, you can also try to do this exercise when running Argo Rollouts Dashboard:
+```shell
+kubectl argo rollouts dashboard
+```
+
+And then visit [http://localhost:3100/rollouts](http://localhost:3100/rollouts])
