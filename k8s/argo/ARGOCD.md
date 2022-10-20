@@ -42,4 +42,4 @@ After that you should be able to acces the Argo-CD frontend by going to your bro
 http://localhost:8080/
 ```
 
-Use username `admin` with password acquired earlier from Secret.
+Use username `admin` with password acquired earlier from Secret. Next steps will be described as part of training ;)
