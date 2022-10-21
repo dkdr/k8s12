@@ -37,9 +37,6 @@ Having this password we should be able to access the frontend. We'll use `kubect
 kubectl port-forward service/my-argo-cd-argocd-server -n default 8080:443
 ```
 
-After that you should be able to acces the Argo-CD frontend by going to your browser and typing
-```
-http://localhost:8080/
-```
+After that you should be able to acces the Argo-CD frontend by going to [http://localhost:8080/](http://localhost:8080/).
 
 Use username `admin` with password acquired earlier from Secret. Next steps will be described as part of training ;)
