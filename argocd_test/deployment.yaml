@@ -16,7 +16,7 @@ spec:
       - name: php-apache
         image: k8s.gcr.io/hpa-example
         ports:
-        - containerPort: 80
+        - containerPort: 5000
         resources:
           limits:
             cpu: 500m
