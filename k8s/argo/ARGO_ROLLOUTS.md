@@ -48,7 +48,7 @@ kubectl argo rollouts set image rollouts-demo rollouts-demo=argoproj/rollouts-de
 kubectl argo rollouts get rollout rollouts-demo
 ```
 
-Look once again at [http://rollours-demo.local](http://rollours-demo.local) - there should be exactly 20% of yellow squares. 
+Look once again at [http://rollouts-demo.local](http://rollouts-demo.local) - there should be exactly 20% of yellow squares. 
 
 But the rollout is not progressing. Why so? Well, there is a pause in our rollout:
 ```shell
