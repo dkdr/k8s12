@@ -1,0 +1,16 @@
+{{- if .Values.prometheus.rules.enabled -}}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  {{- with .Values.prometheus.rules.labels }}
+  labels:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.prometheus.rules.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  name: {{ template "pint.fullname" . }}
+spec:
+{{- toYaml .Values.prometheus.rules.spec | nindent 2 }}
+{{- end }}

@@ -1,0 +1,263 @@
+# Default values for pint.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+revisionHistoryLimit: 1
+
+image:
+  repository: ghcr.io/cloudflare/pint
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "0.39.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: pint.example.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+pint:
+  args: ["-config=pint.hcl", "-log-level=info", "watch", "-interval=10m", "alerts/*"]
+  config: |
+    # Define "prod" Prometheus instance
+    prometheus "prod" {
+      uri      = "http://prometheus"
+      # By default, pint does not need to connect to prom server
+      required = true
+      # Our prometheus is scraping itself, so using pormehteus_build_info as uptime metric is recommended
+      uptime = "prometheus_build_info"
+      timeout = "30s"
+      include = [
+        "alerts/.*.yaml",
+      ]
+      exclude = [
+        "alerts/monitoring-kube-prometheus-stack.*.yaml",
+      ]
+
+    }
+
+
+    rule {
+      # Disallow spaces in label/annotation keys, they're only allowed in values.
+      reject ".* +.*" {
+        label_keys      = true
+        annotation_keys = true
+      }
+
+      # Disallow URLs in labels, they should go to annotations.
+      reject "https?://.+" {
+        label_keys   = true
+        label_values = true
+      }
+    }
+
+    rule {
+      # This block will apply to all alerting rules.
+      match {
+        kind = "alerting"
+      }
+
+      # Each alert must have a 'summary' annotation on every alert.
+      annotation "summary" {
+        severity = "bug"
+        required = false
+      }
+
+      # Each alert must have a 'dashboard' annotation that links to grafana.
+      #annotation "dashboard" {
+      #  severity = "bug"
+      #  value    = "https://grafana.example.com/(.+)"
+      #}
+
+      # Each alert must have a 'severity' annotation that's either 'critical', 'warning' or 'info'.
+      label "severity" {
+        severity = "bug"
+        value    = "(critical|warning|info|none|advisory)"
+        required = true
+      }
+
+      # Check how many times each alert would fire in the last 1d.
+      alerts {
+        range   = "1d"
+        step    = "1m"
+        resolve = "5m"
+      }
+
+      # Validate all links to ensure they point to pages that do exist.
+      link "https?://(.+)" {
+        severity = "warning"
+        timeout = "30s"
+      }
+    }
+
+    #rule {
+    #  # This block will apply to all alerting rules with severity="critical" label set.
+    #  match {
+    #    kind = "alerting"
+    #
+    #    label "severity" {
+    #      value = "critical"
+    #    }
+    #  }
+    #
+    #  # All severity="critical" alerts must have a runbook link as annotation.
+    #  annotation "wiki" {
+    #    severity = "bug"
+    #    value    = "https://wiki.example.com/.+"
+    #    required = true
+    #  }
+    #}
+
+    rule {
+      # This block will apply to all recording rules.
+      match {
+        kind = "recording"
+      }
+
+      # Ensure that all aggregations are preserving "job" label.
+      #aggregate ".+" {
+      #  severity = "bug"
+      #  keep     = ["job"]
+      #}
+
+      # Enable cost checks that will print the number of returned time series and try
+      # to estimate total memory usage.
+      cost {}
+    }
+
+    rule {
+      # This block will apply to all recording rules in "recording/federation" directory.
+      match {
+        kind = "recording"
+        path = "recording/federation/.+"
+      }
+
+      # All recording rules named "cluster:.+" must strip "instance" label when aggregating.
+      # Example rule that would raise a linter error:
+      # - record: cluster:http_requests:rate5m
+      #   expr: sum(rate(http_requests_total[5m])) by (job, instance)
+      # Rules that would be allowed:
+      # - record: cluster:http_requests:rate5m
+      #   expr: sum(rate(http_requests_total[5m])) by (job)
+      # - record: cluster:http_requests:rate5m
+      #   expr: sum(rate(http_requests_total[5m]))
+      aggregate "cluster:.+" {
+        severity = "bug"
+        strip    = ["instance"]
+      }
+    }
+    check "promql/series" {
+      # Don't report missing metrics for any metric with name matching
+      # one of the regexp matchers below.
+      ignoreMetrics = [
+        ".+_error",
+        ".+_error_.+",
+        ".+_errors",
+        ".+_errors_.+",
+        "kube_job_failed",
+        "container_memory_swap", # https://github.com/google/cadvisor/issues/2666 
+        "apiserver_request_total", # Always missing label {code=~"3.."} - I don't think, that API will retun 3xx HTTP code
+      ]
+    }
+
+alerts:
+  volumes:
+    - name: prom-alerts-0
+      configMap:
+        name: prometheus-kube-prometheus-stack-prometheus-rulefiles-0
+  volumeMounts:
+    - name: prom-alerts-0
+      mountPath: /code/alerts/
+
+prometheus:
+  servicemonitor:
+    enabled: true
+    labels: 
+      cabp/prometheus-instance: default 
+    annotations: {}
+    interval: 5m
+
+  rules:
+    enabled: true
+    labels:
+      cabp/prometheus-instance: default 
+    annotations: {}
+    spec: 
+      groups:
+      - name: ./rules.pint
+        rules:
+          - alert: PintProblemDetected
+            expr: sum without(instance, problem) (pint_problem) > 0
+            for: 1h
+            labels:
+              severity: warning
+              group: MyGroup
+              alerta: 'false'
+            annotations:
+              summary: | 
+                {{ with printf "pint_problem{filename='%s', name='%s', reporter='%s'}" .Labels.filename .Labels.name .Labels.reporter | query }}
+                  {{ . | first | label "problem" }}
+                {{ end }}
+              WIKI: "https://cloudflare.github.io/pint/checks/{{ $labels.reporter }}.html"
+
+
+    
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

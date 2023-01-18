@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pint-config
+data:
+  pint.hcl: 
+{{ toYaml .Values.pint.config | indent 4 }}
