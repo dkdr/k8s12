@@ -213,15 +213,13 @@ alerts:
 prometheus:
   servicemonitor:
     enabled: true
-    labels: 
-      cabp/prometheus-instance: default 
+    labels: {}
     annotations: {}
     interval: 5m
 
   rules:
     enabled: true
-    labels:
-      cabp/prometheus-instance: default 
+    labels: {}
     annotations: {}
     spec: 
       groups:
