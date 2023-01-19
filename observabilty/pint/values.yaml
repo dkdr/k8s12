@@ -62,7 +62,7 @@ pint:
   config: |
     # Define "prod" Prometheus instance
     prometheus "prod" {
-      uri      = "http://prometheus"
+      uri      = "http://kube-monitoring-kube-prome-prometheus:9090"
       # By default, pint does not need to connect to prom server
       required = true
       # Our prometheus is scraping itself, so using pormehteus_build_info as uptime metric is recommended
