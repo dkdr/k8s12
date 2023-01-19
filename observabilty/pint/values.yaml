@@ -205,7 +205,7 @@ alerts:
   volumes:
     - name: prom-alerts-0
       configMap:
-        name: prometheus-kube-prometheus-stack-prometheus-rulefiles-0
+        name: prometheus-kube-monitoring-kube-prome-prometheus-rulefiles-0
   volumeMounts:
     - name: prom-alerts-0
       mountPath: /code/alerts/
@@ -213,7 +213,8 @@ alerts:
 prometheus:
   servicemonitor:
     enabled: true
-    labels: {}
+    labels:
+      release: kube-monitoring
     annotations: {}
     interval: 5m
 
