@@ -2,7 +2,7 @@
 
 ## Install helm
 
-It would be nice to install helm before we begin, and to do so, you'll need to run below commands as a root user
+It would be nice to install helm before we begin, and to do so, you'll need to run below commands
 ```shell
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 chmod 700 get_helm.sh
