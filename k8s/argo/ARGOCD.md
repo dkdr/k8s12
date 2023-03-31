@@ -22,7 +22,7 @@ Default values should be fine, so we can just run the installation
 ```shell
 cd argo-cd
 kubectl config set-context --current --namespace=default
-helm install my-argo-cd . -f values.yaml
+helm install my-argo-cd . -f values.yaml --atomic
 ```
 
 ## Access the frontend
