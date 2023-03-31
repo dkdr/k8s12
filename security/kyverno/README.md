@@ -11,7 +11,7 @@ We'l start with installing the tool:
 kubectl create namespace kyverno
 kubectl config set-context --current --namespace=kyverno
 helm repo add kyverno https://kyverno.github.io/kyverno/
-helm install kyverno kyverno/kyverno --version 2.1.4
+helm install kyverno kyverno/kyverno --version 2.1.4 --atomic
 ```
 
 And lets deplyo the policy:
