@@ -41,6 +41,9 @@ To access grafana ui:
 ```shell
 kubectl port-forward service/kube-monitoring-grafana 9080:80
 ```
+
+You'll find grafana under [http://localhost:9080/](http://localhost:9080/). 
+
 Default login/password for grafana: `admin:prom-operator`.
 
 You can take a look at example dashboards. Note that some dashboards might not work out of the box (for example: etcd dashboard). This is fine.
