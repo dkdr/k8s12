@@ -227,7 +227,7 @@ prometheus:
       - name: ./rules.pint
         rules:
           - alert: PintProblemDetected
-            expr: sum without(instance, problem) (pint_problem) > 0
+            expr: sum without(instance, problem) (pint_problem) > 1
             for: 2h
             labels:
               severity: warning
