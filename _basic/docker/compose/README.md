@@ -35,7 +35,7 @@ This will print logs from all containers, when using docker you can just run `do
 
 If you need to change code of your application you can just edit `app.py` file and run `docker compose up -d --build` <- this will ensure, that all images will be rebuilded (if needed).
 
-To stop your application: `docker compose stop`
+To stop your application: `docker-compose stop`
 
 If you want to go further, you can take a look at [Kubernetes](https://kubernetes.io) which is much more powerful than docker compose (and more complicated!). As first step to it, you can convert your docker-compsoe into kubernetes manifests using [kompose](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/):
 ```shell
