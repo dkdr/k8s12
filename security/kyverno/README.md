@@ -14,7 +14,7 @@ helm repo add kyverno https://kyverno.github.io/kyverno/
 helm install kyverno kyverno/kyverno --version 2.1.4 --atomic
 ```
 
-And lets deplyo the policy:
+And lets deploy the policy:
 ```shell
 kubectl apply -f policy-deployment.yaml
 ```
