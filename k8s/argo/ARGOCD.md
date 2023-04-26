@@ -12,8 +12,8 @@ helm repo add argo https://argoproj.github.io/argo-helm
 
 After that we should be able to download our charts:
 ```shell
-helm fetch argo/argo-cd --version 5.18.0
-tar xvf argo-cd-5.18.0.tgz
+helm fetch argo/argo-cd --version 5.29.1
+tar xvf argo-cd-5.29.1.tgz
 ```
 
 By running those commands we'll download our charts and extract them in `argo-cd` directory. You can take a look at `values.yaml` file which should contain whole argocd basic parametrization.
