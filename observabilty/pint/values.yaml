@@ -228,7 +228,7 @@ prometheus:
         rules:
           - alert: PintProblemDetected
             expr: sum without(instance, problem) (pint_problem) > 1
-            for: 2h
+            for: 1h
             labels:
               severity: warning
               group: MyGroup
