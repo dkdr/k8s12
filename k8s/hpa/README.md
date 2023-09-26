@@ -17,7 +17,7 @@ oc autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
 
 All we need to do is create some load in separate terminal:
 ```shell
-oc run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+oc run -i --tty load-generator --rm --image=k8s.gcr.io/busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
 ```
 
 Now lets just watch our pods being scaled up and down (when we stop the `kubectl run` process):
