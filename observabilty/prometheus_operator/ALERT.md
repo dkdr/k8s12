@@ -14,7 +14,7 @@ oc apply -f springboot.yaml
 Here you'll experience a permission error if you're using normal user. But worry not! There is a simple way to fix the issue, all you need to do is... grant those permissions!
 
 ```shell
-oc policy add-role-to-user monitoring-edit <user namespace>> -n <user name>
+oc policy add-role-to-user monitoring-edit -n <user namespace> <user name>
 ```
 
 After re-running previous command, you can visit `Observe -> Metrics` section and in query select `Custom Query` then type `visit_counter_total`
