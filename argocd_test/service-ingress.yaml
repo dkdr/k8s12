@@ -14,7 +14,7 @@ kind: Ingress
 metadata:
   name: example-ingress
   labels:
-    szkolenie: true
+    szkolenie: "true"
 spec:
   rules:
   - http:
