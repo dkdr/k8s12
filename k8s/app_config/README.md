@@ -52,7 +52,6 @@ application.properties  somefile.txt
 root@konfigapp-67f9d57885-n5vfn:/# cat /etc/konfig/somefile.txt
 This is file does nothing important.
 It is just existing.
-Quite similar to Docker Swarm...
 ```
 
 Indeed, files are in container. Ok, so let's change ConfigMap, this should also change files in our container. Right? Well, lets check. (But probably you already know the answer). Run below command and make some changes in files.
@@ -66,7 +65,6 @@ In my case I changed content of `somefile.txt` in the ConfigMap to `fdsvfcaiusfv
 root@konfigapp-67f9d57885-n5vfn:/# cat /etc/konfig/somefile.txt
 This is file does nothing important.
 It is just existing.
-Quite similar to Docker Swarm...
 ```
 
 As you can see, the file in container also changed. This happens only when you're mounting configmap as volume. You can read more about it [here](https://medium.com/@harsh.manvar111/update-configmap-without-restarting-pod-56801dce3388). If you app needs to be restarted when configmap changes, you can use Helm to trigger new deployment when content of configmap changes: [Helm Tips and Tricks](**https://helm.sh/docs/howto/charts_tips_and_tricks/#automatically-roll-deployments**).
