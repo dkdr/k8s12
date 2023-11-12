@@ -1,3 +1,2 @@
 This is file does nothing important.
 It is just existing.
-Quite similar to Docker Swarm...
