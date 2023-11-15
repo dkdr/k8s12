@@ -226,7 +226,7 @@ prometheus:
       groups:
       - name: ./rules.pint
         rules:
-          - alert: PintProblemDetectedTest
+          - alert: PintProblemDetected
             expr: sum without(instance, problem) (pint_problem) > 1
             for: 1h
             labels:
