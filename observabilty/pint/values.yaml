@@ -232,7 +232,6 @@ prometheus:
             labels:
               severity: warning
               group: MyGroup
-              alerta: 'false'
             annotations:
               summary: | 
                 {{ with printf "pint_problem{filename='%s', name='%s', reporter='%s'}" .Labels.filename .Labels.name .Labels.reporter | query }}
