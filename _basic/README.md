@@ -5,8 +5,9 @@
 First we need to open Terminal and install some stuff:
 
 ```shell
-sudo yum install -y docker docker-compose bash-completion vim ca-certificates firefox  # make us a privileged user and install some tools and fresh certificates
-sudo update-ca-trust # Update system cert truststore
+sudo apt-get update
+sudo apt-get install -y docker docker-compose bash-completion vim ca-certificates firefox  # make us a privileged user and install some tools and fresh certificates
+sudo update-ca-certificates # Update system cert truststore
 . /etc/profile.d/bash_completion.sh
 ```
 
@@ -55,14 +56,6 @@ Kubectl is a CLI interface for our cluster.
 ```shell
 sudo curl -Lo /usr/bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo chmod a+x /usr/bin/kubectl
-```
-
-## Install octant
-Octant is a GUI interface for our cluster.
-
-```shell
-sudo yum install -y xdg-utils # This will allow octant to automatically open browser
-sudo rpm -i https://github.com/vmware-tanzu/octant/releases/download/v0.25.1/octant_0.25.1_Linux-64bit.rpm 
 ```
 
 ## Install krew
