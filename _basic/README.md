@@ -45,7 +45,7 @@ To provision our basic cluster we'll use [Kubernetes in Docker](https://kind.sig
 
 Let's install it:
 ```shell
-sudo curl -Lo /usr/bin/kind https://kind.sigs.k8s.io/dl/v0.18.0/kind-linux-amd64
+sudo curl -Lo /usr/bin/kind https://kind.sigs.k8s.io/dl/v0.24.0/kind-linux-amd64
 sudo chmod a+x /usr/bin/kind
 ```
 Commands listed above will download kind binary to /usr/bin/ directory and make it executable for user. We'll do same thing with kubectl binary, which will be used to run commands against our newly created cluster:
