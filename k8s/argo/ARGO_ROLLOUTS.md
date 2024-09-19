@@ -38,7 +38,7 @@ You should see 5 running stable pods from one revision. Let's change a little :)
 It will be nice to take a look at how it looks from user perspective. To do so, we'll need to create an ingress and do one, small trick:
 ```shell
 kubectl apply -f rollouts/ingress.yaml
-sudo echo "127.0.0.1 rollouts-demo.local" >> /etc/hosts
+echo "127.0.0.1 rollouts-demo.local" | sudo tee -a /etc/hosts
 ```
 
 Now we can take a look at [http://rollouts-demo.local](http://rollouts-demo.local). You should see some blue squares (each represents one request). Now let's make some mess.
