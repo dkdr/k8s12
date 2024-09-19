@@ -27,13 +27,13 @@ Now let's apply initial Rollout and Service (it will automatically scale to 100%
 kubectl apply -f rollouts/rollout.yaml
 kubectl apply -f rollouts/services.yaml
 ```
-Take a look at [rollout.yaml](rollouts/rollout.yaml) since it describes our rollout startegy. This object is very similar to Deployment and main difference is the `strategy` field. You can even do live migration from Deployment to Rollout without any downtime! To find more follow [this page](https://argoproj.github.io/argo-rollouts/migrating/).
+Take a look at [rollout.yaml](rollouts/rollout.yaml) since it describes our rollout strategy. This object is very similar to Deployment and main difference is the `strategy` field. You can even do live migration from Deployment to Rollout without any downtime! To find more follow [this page](https://argoproj.github.io/argo-rollouts/migrating/).
 
-Now we can taka a look at our rollout status:
+Now we can take a look at our rollout status:
 ```shell
 kubectl argo rollouts get rollout rollouts-demo
 ```
-You should see 5 running stable pods from one revision. Let's change a little bit :)
+You should see 5 running stable pods from one revision. Let's change a little :)
 
 It will be nice to take a look at how it looks from user perspective. To do so, we'll need to create an ingress and do one, small trick:
 ```shell
@@ -41,7 +41,7 @@ kubectl apply -f rollouts/ingress.yaml
 sudo echo "127.0.0.1 rollouts-demo.local" >> /etc/hosts
 ```
 
-Now we can take a look at [http://rollours-demo.local](http://rollours-demo.local). You should see some blue squares (each represents one request). Now let's make some mess.
+Now we can take a look at [http://rollouts-demo.local](http://rollouts-demo.local). You should see some blue squares (each represents one request). Now let's make some mess.
 
 ```shell
 kubectl argo rollouts set image rollouts-demo rollouts-demo=argoproj/rollouts-demo:yellow
