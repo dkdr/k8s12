@@ -1,0 +1,25 @@
+auth:
+  strategy: "anonymous"
+
+deployment:
+  ingress:
+    enabled: true
+
+external_services:
+  custom_dashboards:
+    enabled: true
+
+  istio:
+    root_namespace: "istio-system"
+  prometheus:
+    url: http://prometheus-operated.istio-system:9000
+  tracing:
+    enabled: false
+    inc_cluster_url: http://jaeger-query.observability:16685/jaeger
+    namespace_selector: false
+  grafana:
+    enabled: false
+    in_cluster_url: http://grafana-service.monitoring:3000/
+
+server:
+  web_fqdn: "kialiweb"
