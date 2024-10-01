@@ -1,0 +1,57 @@
+customLdifFiles:
+  00-root.ldif: |-
+    dn: dc=example,dc=org
+    objectClass: dcObject
+    objectClass: organization
+    o: Example, Inc
+  01-root.ldif: |-
+    dn: ou=People,dc=example,dc=org
+    objectClass: organizationalUnit
+    ou: People
+  
+    # User definitions
+  12-default-user.ldif: |-
+    dn: cn=admin,ou=People,dc=example,dc=org
+    objectClass: person
+    objectClass: inetOrgPerson
+    sn: doe
+    cn: admin
+    mail: admin@example.org
+    userpassword: password
+  13-default-user.ldif: |-
+    dn: cn=developer,ou=People,dc=example,dc=org
+    objectClass: person
+    objectClass: inetOrgPerson
+    sn: doe
+    cn: developer
+    mail: developer@example.org
+    userpassword: superpass123
+  14-default-user.ldif: |-
+    dn: cn=operator,ou=People,dc=example,dc=org
+    objectClass: person
+    objectClass: inetOrgPerson
+    sn: doe
+    cn: operator
+    mail: operator@example.org
+    userpassword: superpass321
+  
+  # Group definitions
+
+  #  dn: ou=Groups,dc=example,dc=org
+  #  objectClass: organizationalUnit
+  #  ou: Groups
+  02-default-group.ldif: |-
+    dn: cn=admins,ou=Groups,dc=example,dc=org
+    objectClass: groupOfNames
+    cn: admins
+    member: cn=admin,ou=People,dc=example,dc=org
+  03-default-group.ldif: |-
+    dn: cn=developers,ou=Groups,dc=example,dc=org
+    objectClass: groupOfNames
+    cn: developers
+    member: cn=developer,ou=People,dc=example,dc=org
+  04-default-group.ldif: |-
+    dn: cn=operations,ou=Groups,dc=example,dc=org
+    objectClass: groupOfNames
+    cn: operations
+    member: cn=operator,ou=People,dc=example,dc=org
