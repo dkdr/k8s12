@@ -6,7 +6,7 @@ We'll use modified version of [kyverno quickstart](https://kyverno.io/docs/intro
 
 # Install
 
-We'l start with installing the tool:
+We'll start with installing the tool:
 ```shell
 kubectl create namespace kyverno
 kubectl config set-context --current --namespace=kyverno
@@ -14,7 +14,7 @@ helm repo add kyverno https://kyverno.github.io/kyverno/
 helm install kyverno kyverno/kyverno --version 2.1.4 --atomic
 ```
 
-And lets deploy the policy:
+And let's deploy the policy:
 ```shell
 kubectl apply -f policy-deployment.yaml
 ```
