@@ -11,6 +11,6 @@ spec:
   groups:
   - name: ./springboot.rules
     rules:
-    - alert: ToManyVisitors
+    - alert: TooManyVisitors
       expr: visit_counter_total > 10
       for: 1m
