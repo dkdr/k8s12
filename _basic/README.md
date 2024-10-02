@@ -105,8 +105,7 @@ chmod 700 get_helm.sh
 Let's see if it really works
 ```shell
 λ helm version
-version.BuildInfo{Version:"v3.11.0", GitCommit:"472c5736ab01133de504a826bd9ee12cbe4e7904", GitTreeState:"clean", GoVersion:"go1.18.10"}
-```
+version.BuildInfo{Version:"v3.16.1", GitCommit:"5a5449dc42be07001fd5771d56429132984ab3ab", GitTreeState:"clean", GoVersion:"go1.22.7"}```
 
 
 Now we're ready to [create cluster](DEPLOY_CLUSTER.md)!
