@@ -16,7 +16,7 @@ Note, that there is a patch command, which adds specific annotation to pod. `flu
 So lets deploy our fluentbit:
 ```shell
 helm repo add fluent https://fluent.github.io/helm-charts
-helm upgrade --install -f fluent-bit-values.yaml fluent-bit fluent/fluent-bit 
+helm upgrade --install -f fluent-bit-values.yaml --version=0.39.0 fluent-bit fluent/fluent-bit 
 ```
 
 Note that in [fluent-bit-values.yaml](fluent-bit-values.yaml)  there is a whole config section which was prepared for this exercise. In most cases you will modify the [OUTPUTS](https://docs.fluentbit.io/manual/pipeline/outputs) section. However take a look at [Kuberenetes filter config](https://docs.fluentbit.io/manual/pipeline/filters/kubernetes).
