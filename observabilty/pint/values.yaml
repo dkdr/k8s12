@@ -216,7 +216,7 @@ prometheus:
     labels:
       release: kube-monitoring
     annotations: {}
-    interval: 5m
+    interval: 3m
 
   rules:
     enabled: true
