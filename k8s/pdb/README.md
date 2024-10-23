@@ -39,6 +39,6 @@ And here you'll see that kubernetes doesn't allow your pod to be evicted, so the
 ## Cleanup
 
 ```shell
-kubeclt uncordon kind-worker2
+kubectl uncordon kind-worker2
 kubectl delete namespace pdb
 ```
