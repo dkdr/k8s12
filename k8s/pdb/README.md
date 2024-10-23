@@ -15,7 +15,7 @@ kubectl get pods -o wide
 As you can see, all 3 pods are for each deployment are deployed on separate node. Now we'll create a PDB for one of the deployment.
 ```shell
 kubectl apply -f pdb.yaml
-kubectl pdb
+kubectl get pdb
 ```
 
 As you can see we are allowed to make 1 disruption. So lets make one of our nodes unschedulable and drain pods from it (you should do this when taking node offline).
