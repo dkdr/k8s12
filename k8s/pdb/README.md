@@ -36,6 +36,12 @@ kubectl drain kind-worker2 --ignore-daemonsets
 
 And here you'll see that kubernetes doesn't allow your pod to be evicted, so the drain command will run until you'll find place for another pod in your deployment. So in separate terminal we can return `kind-worker3` node to cluster. And after a while you'll se i your first terminal, that `kind-worker2` was successfully drained.
 
+```shell
+kubectl uncordon kind-worker3
+```
+
+And now, `kind-worker2` should be evicted.
+
 ## Cleanup
 
 ```shell
