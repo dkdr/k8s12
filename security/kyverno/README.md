@@ -68,7 +68,7 @@ helm install policy-reporter policy-reporter/policy-reporter --set kyvernoPlugin
 ```
 
 Now lets change our policy from enforcing to audit. This will allow us to create pods without label, but such things can be reported. This is useful when you want to implement kyverno without making mess with stuff which is already deployed.
-Simply edit the [policy-deployment.yaml](policy-deployment.yaml) and change `validationFailureAction: enforce` to `validationFailureAction: audit`.
+Simply edit the [policy-deployment.yaml](policy-deployment.yaml) and change `validationFailureAction: Enforce` to `validationFailureAction: Audit`.
 
 Now we can access the frontend and take a look at some "bad pods".
 
