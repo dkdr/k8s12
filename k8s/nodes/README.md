@@ -8,7 +8,7 @@ Sometimes you just need to take the node off the cluster, like when you want to 
 
 To do so, you firstly should make the node as unschedulable, so no new pod will be assigned to it.
 ```shell
-kubectl cordon node kind-worker
+kubectl cordon kind-worker
 ```
 
 You can verify if node is unschedulable by running
