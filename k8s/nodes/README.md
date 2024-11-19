@@ -19,7 +19,7 @@ kubectl get nodes
 You should see, that node `kind-worker` has status SchedulingDisabled. But this only means, that no new pod will be assigned to it. We also need to evict the ones which are already running!
 
 ```shell
-kubeclt drain kind-worker
+kubectl drain kind-worker
 ```
 
 Well... that didn't work... Kubernetes will try to prevent us from doing some nasty stuff, like for example removing pods which are deployed by DaemonSet. But for every case of a problem you'll find a solution right in the error message:
