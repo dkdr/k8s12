@@ -20,8 +20,8 @@ Let's add the repo, and fetch the charts:
 
 ```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm fetch prometheus-community/kube-prometheus-stack --version 62.7.0
-tar xvf kube-prometheus-stack-62.7.0.tgz
+helm fetch prometheus-community/kube-prometheus-stack --version 66.2.1
+tar xvf kube-prometheus-stack-66.2.1.tgz
 cd kube-prometheus-stack/
 ```
 
