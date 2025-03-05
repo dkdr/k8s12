@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      terminationGracePeriodSeconds: 600 # 10 minutes
+      containers:
+      - name: python-container
+        image: python:3.9-slim-buster # or any other python image
+        command: ["python", "/app/main.py"]
+        ports: # Add this section
+          - containerPort: 9090
+        lifecycle:
+          preStop:
+            exec:
+              command: [ "/bin/sh", "-c", "sleep 600" ]
+        volumeMounts:
+        - name: script-volume
+          mountPath: /app
+      volumes:
+      - name: script-volume
+        configMap:
+          name: python-script-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+spec:
+  selector:
+    app: python-app
+  ports:
+    - protocol: TCP
+      port: 9090 # Service port
+      targetPort: 9090
